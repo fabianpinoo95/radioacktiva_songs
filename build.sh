@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+prueba error
 set -o errexit  # para que falle si algo falla
 
 apt-get update
