@@ -1,8 +1,8 @@
 services:
   - type: cron
-    name: selenium-scraper
+    name: radioacktiva_songs
     env: python
     plan: free
-    schedule: "*/30 * * * *"   # cada 30 minutos
-    buildCommand: ""
+    schedule: "*/45 * * * *"
+    buildCommand: "./build.sh"
     startCommand: "python main.py"
