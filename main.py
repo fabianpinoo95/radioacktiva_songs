@@ -22,16 +22,28 @@ from selenium.webdriver.support.ui import WebDriverWait
 import sys
 import types
 
-# 🔧 Parche para que librerías viejas que buscan distutils no fallen en Python 3.13
+# 🔧 Parche para reemplazar distutils en Python 3.13
 distutils = types.ModuleType("distutils")
 version = types.ModuleType("version")
 
-class DummyVersion(str):
+class DummyVersion:
     def __init__(self, v="0.0"):
+        self.vstring = v
         self.version = v
 
+    def __str__(self):
+        return self.vstring
+
     def __repr__(self):
-        return f"<DummyVersion {self.version}>"
+        return f"<DummyVersion {self.vstring}>"
+
+    # Métodos de comparación para que no truene al comparar versiones
+    def __lt__(self, other): return str(self) < str(other)
+    def __le__(self, other): return str(self) <= str(other)
+    def __eq__(self, other): return str(self) == str(other)
+    def __ne__(self, other): return str(self) != str(other)
+    def __gt__(self, other): return str(self) > str(other)
+    def __ge__(self, other): return str(self) >= str(other)
 
 version.LooseVersion = DummyVersion
 version.StrictVersion = DummyVersion
