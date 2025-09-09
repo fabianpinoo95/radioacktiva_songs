@@ -13,7 +13,7 @@ Tomar canciones de la página de radios.com de la radio radioacktiva.
 # import glob # built-in
 import time
 
-time.sleep(10)
+time.sleep(1)
 
 # import sys
 # import pyautogui
