@@ -1,5 +1,5 @@
 selenium
-undetected-chromedriver
+undetected-chromedriver==3.5.4
 pandas
 openpyxl
-distutils
+setuptools
