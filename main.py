@@ -22,6 +22,7 @@ import pandas as pd
 
 # from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -37,10 +38,14 @@ df_his = pd.read_excel(r'radioactiva_songs.xlsx')
 
 
 
-chromeOptions = webdriver.ChromeOptions()
-chromeOptions.add_argument("window-size=1200x600")
-chromeOptions.add_argument("--start-maximized")
-driver = webdriver.Chrome(options=chromeOptions)
+options = Options()
+options.add_argument("--headless=new")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.binary_location = "/usr/bin/chromium"
+
+driver = webdriver.Chrome(options=options)
 
 driver.get('https://radios.com.co/radioactiva/')
 
