@@ -1,0 +1,8 @@
+services:
+  - type: cron
+    name: selenium-scraper
+    env: python
+    plan: free
+    schedule: "*/30 * * * *"   # cada 30 minutos
+    buildCommand: ""
+    startCommand: "python main.py"
