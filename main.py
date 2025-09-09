@@ -22,14 +22,26 @@ from selenium.webdriver.support.ui import WebDriverWait
 import sys
 import types
 
-# parche para que librerías viejas que buscan distutils no fallen en Python 3.13
-sys.modules["distutils"] = types.ModuleType("distutils")
-sys.modules["distutils.version"] = types.ModuleType("version")
-sys.modules["distutils.version"].LooseVersion = lambda x: x
-sys.modules["distutils.version"].StrictVersion = lambda x: x
+# 🔧 Parche para que librerías viejas que buscan distutils no fallen en Python 3.13
+distutils = types.ModuleType("distutils")
+version = types.ModuleType("version")
 
+class DummyVersion(str):
+    def __init__(self, v="0.0"):
+        self.version = v
+
+    def __repr__(self):
+        return f"<DummyVersion {self.version}>"
+
+version.LooseVersion = DummyVersion
+version.StrictVersion = DummyVersion
+distutils.version = version
+
+sys.modules["distutils"] = distutils
+sys.modules["distutils.version"] = version
+
+# Ahora ya puedes importar undetected_chromedriver sin errores
 import undetected_chromedriver as uc
-
 
 
 df_his = pd.read_excel(r'radioactiva_songs.xlsx')
