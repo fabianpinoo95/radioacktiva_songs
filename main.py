@@ -38,15 +38,14 @@ df_his = pd.read_excel(r'radioactiva_songs.xlsx')
 
 
 
-options = Options()
+import undetected_chromedriver as uc
+
+options = uc.ChromeOptions()
 options.add_argument("--headless=new")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--disable-gpu")
-options.binary_location = "/usr/bin/chromium"
 
-driver = webdriver.Chrome(options=options)
-
+driver = uc.Chrome(options=options)
 driver.get('https://radios.com.co/radioactiva/')
 
 time.sleep(5)
