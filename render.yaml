@@ -3,6 +3,6 @@ services:
     name: radioacktiva_songs
     env: python
     plan: free
-    schedule: "*/45 * * * *"
+    schedule: "*/10000 * * * *"
     buildCommand: "./build.sh"
     startCommand: "python main.py"
