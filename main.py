@@ -7,31 +7,29 @@ Created on Fri Aug 15 10:15:42 2025
 Tomar canciones de la página de radios.com de la radio radioacktiva.
 """
 
-# input("Presiona Enter para continuar...")
-
-# import os
-# import glob # built-in
 import time
 
 time.sleep(1)
 
-# import sys
-# import pyautogui
-# import shutil
 import pandas as pd
 
-# from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver import ActionChains
-# from selenium.webdriver.common.keys import Keys
 
-# from urllib.parse import quote # codificar usuario y contraseña
+import sys
+import types
 
-# import pyautogui
+# parche para que librerías viejas que buscan distutils no fallen en Python 3.13
+sys.modules["distutils"] = types.ModuleType("distutils")
+sys.modules["distutils.version"] = types.ModuleType("version")
+sys.modules["distutils.version"].LooseVersion = lambda x: x
+sys.modules["distutils.version"].StrictVersion = lambda x: x
+
+import undetected_chromedriver as uc
+
 
 
 df_his = pd.read_excel(r'radioactiva_songs.xlsx')
