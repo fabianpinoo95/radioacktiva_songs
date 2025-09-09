@@ -1,8 +1,0 @@
-services:
-  - type: cron
-    name: radioacktiva_songs
-    env: python
-    plan: free
-    schedule: "*/10000 * * * *"
-    buildCommand: "./build.sh"
-    startCommand: "python main.py"
