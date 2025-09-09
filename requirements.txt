@@ -2,3 +2,4 @@ selenium
 undetected-chromedriver
 pandas
 openpyxl
+distutils
